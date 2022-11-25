@@ -13,11 +13,11 @@
 #
 #
 # def sum_num(n):
-#     sum = n % 10
+#     summa = n % 10
 #     while n // 10 != 0:
 #         n = n // 10
-#         sum += n % 10
-#     return print(f'Sum is: {sum}')
+#         summa += n % 10
+#     return print(f'Sum is: {summa}')
 #
 # result = to_int(n)
 # sum_num(result)
