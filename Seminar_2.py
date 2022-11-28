@@ -5,7 +5,6 @@
 #
 #
 # def to_int(n):
-#     global result
 #     if ',' in n:
 #         n = n.replace(',', '')
 #     result = int(n)
@@ -50,8 +49,6 @@
 
 
 # def get_numbers(file):
-#     global x1, x2
-#     # чтоб потом можно было повторить их в коде ниже
 #     with open(file) as file:
 #         for index, line in enumerate(file):
 #             if index == 0:
