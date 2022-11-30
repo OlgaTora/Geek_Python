@@ -92,3 +92,44 @@ import random
 # except:
 #     print("You've to input number")
 
+# Реализовать алгоритм перемешивания списка.
+import time
+
+def rand_num(minim =0, maxim=10):
+    num = int((time.time() % 1) * (maxim - minim) + minim)
+    return num
+
+lst = [2, 3, 7, 11, 54]
+#random.shuffle(lst)
+
+for i in range(len(lst)):
+    j = rand_num(0, len(lst) - 1)
+    tmp = lst[i]
+    lst[i], lst[j] = lst[j], lst[i]
+
+print(lst)
+
+# Определить, присутствует ли в заданном списке строк, некоторое число
+lst = ['sdgdsg', '11dfgfdgd', '12dfbdb', 'dfhh']
+num = 2
+
+for i in lst:
+    if i.count(str(num)):
+        print(True)
+        break
+
+# номер второго вхождения строки в списке
+# список: ["qwe", "asd", "zxc", "qwe", "ertqwe"], ищем: "qwe", ответ: 3
+# список: [], ищем: "123", ответ: -1
+
+lst = ['qwe', 'asd', 'zxc', 'qwe', 'ertqwe']
+fnd = 'qwe'
+counter = 0
+index = - 1
+for i in range(0, len(lst) - 1):
+    if lst[i] == fnd:
+        counter += 1
+    if counter == 2:
+      index = i
+      break
+print(index)
