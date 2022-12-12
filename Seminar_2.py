@@ -12,14 +12,14 @@
 #
 #
 # def sum_num(n):
-#     summa = n % 10
-#     while n // 10 != 0:
-#         n = n // 10
-#         summa += n % 10
-#     return print(f'Sum is: {summa}')
-#
-# result = to_int(n)
-# sum_num(result)
+# #     summa = n % 10
+# #     while n // 10 != 0:
+# #         n = n // 10
+# #         summa += n % 10
+# #     return print(f'Sum is: {summa}')
+# #
+# # result = to_int(n)
+# # sum_num(result)
 
 # Напишите программу, которая принимает на вход число N и выдает набор произведений чисел от 1 до N.
 # Пример: - пусть N = 4, тогда [ 1, 2, 6, 24 ] (1, 1*2, 1*2*3, 1*2*3*4)
