@@ -9,9 +9,9 @@ def button():
 
 def get_data_txt(file):
     file = open(file)
-    file = file.read()
-    print(file)
-
+    txt = file.read()
+    print(txt)
+    file.close()
 
 def get_data_csv(file):
     df = pd.read_csv(file)
