@@ -1,14 +1,10 @@
 from aiogram import types
 from aiogram.dispatcher import FSMContext
-from aiogram.contrib.middlewares.logging import LoggingMiddleware
-from fractions import Fraction
-
 from Seminar_10.logger import logger
-from utils import UserInputRat, UserInputComp
+from utils import UserInputRat, UserInputComp, is_valid_rational, to_rational, calc, is_valid_complex, to_complex, \
+    check_complex_res
 from config import dp, bot
 from aiogram.dispatcher.filters import Command
-
-dp.middleware.setup(LoggingMiddleware())
 
 OPERATIONS = '+-*/'
 
@@ -28,7 +24,8 @@ async def set_default_commands(dp):
 # Хэндлер на start
 @dp.message_handler(commands=['start'])
 async def start_command(message: types.Message):
-    await message.reply('Привет!\nКак тeбя зовут?')
+    await message.reply('Привествую тебя, юзер!\n'
+                        'Для работы переходи в меню')
 
 
 # Хэндлер на help
@@ -36,50 +33,6 @@ async def start_command(message: types.Message):
 async def help_command(message: types.Message):
     await message.answer('/calc_rational\n/calc_complex\n/help\n/start')
 
-
-def to_rational(num):
-    num = num.split('/')
-    num = Fraction(int(num[0]), int(num[1]))
-    return float(num)
-
-
-def to_complex(num):
-    num = num[:-1]
-    num = num.split('+')
-    num = complex(int(num[0]), int(num[1]))
-    return num
-
-
-def calc(first_num, second_num, symb):
-    res = 0
-    if symb == '+':
-        res = first_num + second_num
-    elif symb == '-':
-        res = first_num - second_num
-    elif symb == '*':
-        res = first_num * second_num
-    elif symb == '/':
-        res = first_num / second_num
-    return res
-
-
-def is_valid_rational(message):
-    try:
-        to_rational(message)
-        return True
-    except:
-        return False
-
-
-def is_valid_complex(message):
-    try:
-        if message[-1] != 'j':
-            return False
-        else:
-            to_complex(message)
-            return True
-    except:
-        return False
 
 # Хэндлер на rational
 @dp.message_handler(Command('calc_rational'))
@@ -165,6 +118,7 @@ async def operation_complex(message: types.Message, state: FSMContext):
         return
     second_num = to_complex(message.text)
     res = calc(first_num, second_num, symb)
+    res = check_complex_res(res)
     log = f"{data['first_num']} {symb} {message.text} = {res}"
     await message.answer(log)
     logger(log)
