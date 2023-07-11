@@ -3,12 +3,12 @@
 
 
 def find_root(a, b, c):
-    D = b ** 2 - 4 * a * c
-    if D < 0:
+    d = b ** 2 - 4 * a * c
+    if d < 0:
         print("No roots")
     else:
-        print(-b / 2 * a)
-
+        print((- b - d ** 0.5) / 2 * a)
+        print((- b + d ** 0.5) / 2 * a)
 
 #find_root(5, -10, -400)
 

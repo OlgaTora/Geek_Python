@@ -1,11 +1,15 @@
 # Создайте несколько переменных разных типов.
 # Проверьте к какому типу относятся созданные переменные.
 
-example = "a"
+example: str = "a"
 print(type(example))
 
-example = 12
+example: int = 12
 print(type(example))
 
-example = 2 * 5 / 12
+example: float = 2 * 5 / 12
 print(type(example))
+
+example: bool = True
+print(type(example))
+

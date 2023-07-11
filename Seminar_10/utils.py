@@ -1,6 +1,7 @@
 from aiogram.dispatcher.filters.state import StatesGroup, State
 from fractions import Fraction
 
+
 class UserInputRat(StatesGroup):
     first_rat_num = State()
     symbol = State()
