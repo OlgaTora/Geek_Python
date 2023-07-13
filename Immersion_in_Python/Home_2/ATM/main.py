@@ -8,3 +8,18 @@
 # ✔ При превышении суммы в 5 млн, вычитать налог на богатство 10% перед каждой
 # операцией, даже ошибочной
 # ✔ Любое действие выводит сумму денег
+
+from Immersion_in_Python.Home_2.ATM.view import operations
+import constants as const
+
+account = const.START_SUM
+counter: int = 0
+
+while True:
+    try:
+        counter += 1
+        account: float = operations(account, counter)
+        print('------------------')
+    except ValueError:
+        print('You have to input only numbers')
+

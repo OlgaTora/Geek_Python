@@ -4,10 +4,8 @@
 import fractions as fr
 
 
-def get_data() -> tuple[int, int]:
+def get_data() -> tuple[str, str]:
     data: str = input('Input two rational numbers with symbol / ')
-    if data.count('/') < 2:
-        print('Invalid data')
     a, b = data.split()
     return a, b
 
@@ -22,53 +20,74 @@ def join_rational(first_num: int, second_num: int) -> str:
     return result
 
 
-def calc_lcm(first_num: int, second_num:int):
-    lcm: int = 1
+def get_lcm(first_num: int, second_num: int) -> int:
     if first_num > second_num:
-        greater = first_num
+        larger = first_num
     else:
-        greater = second_num
+        larger = second_num
     while True:
-        if greater % first_num == 0 and greater % second_num == 0:
-            lcm = greater
+        if larger % first_num == 0 and larger % second_num == 0:
+            lcm = larger
             break
-        greater += 1
+        larger += 1
     return lcm
 
 
-def calc_summ(first_num_a: int, second_num_a: int, first_num_b: int, second_num_b: int) -> str:
-    lcm: int = calc_lcm(second_num_a, second_num_b)
+def get_gcd(first_num: int, second_num: int) -> int:
+    if second_num == 0:
+        return first_num
+    return get_gcd(second_num, first_num % second_num)
+
+
+def reduce_fraction(first_num, second_num):
+    gcd = get_gcd(first_num, second_num)
+    first_num_res = first_num // gcd
+    second_num_res = second_num // gcd
+    return first_num_res, second_num_res
+
+
+def calc_summ(first_num_a: int, second_num_a: int, first_num_b: int,
+              second_num_b: int) -> str:
+    lcm: int = get_lcm(second_num_a, second_num_b)
     first_num_c: int = int(first_num_a * lcm / second_num_a + first_num_b * lcm / second_num_b)
     second_num_c: int = lcm
-    result = join_rational(first_num_c, second_num_c)
-    return result
-
-
-def calc_multy(first_num_a: int, second_num_a: int, first_num_b: int, second_num_b: int) -> str:
-    first_num_c: int = first_num_a * first_num_b
-    second_num_c: int = second_num_a * second_num_b
+    first_num_c, second_num_c = reduce_fraction(first_num_c, second_num_c)
     result: str = join_rational(first_num_c, second_num_c)
     return result
 
 
-def check_module_fractions(first_num_a: str, second_num_a: str, first_num_b: str, second_num_b: str)\
-        -> tuple[fr.Fraction, fr.Fraction]:
+def calc_multy(first_num_a: int, second_num_a: int, first_num_b: int,
+               second_num_b: int) -> str:
+    first_num_c: int = first_num_a * first_num_b
+    second_num_c: int = second_num_a * second_num_b
+    first_num_c, second_num_c = reduce_fraction(first_num_c, second_num_c)
+    result: str = join_rational(int(first_num_c), int(second_num_c))
+    return result
+
+
+def check_module_fractions(first_num_a: int, second_num_a: int, first_num_b: int,
+                           second_num_b: int) -> tuple[fr.Fraction, fr.Fraction]:
     f_first = fr.Fraction(first_num_a, second_num_a)
     f_second = fr.Fraction(first_num_b, second_num_b)
-    summ = f_first + f_second
-    multy = f_first * f_second
+    summ: fr.Fraction = f_first + f_second
+    multy: fr.Fraction = f_first * f_second
     return summ, multy
 
 
-a, b  = get_data()
-first_num_a, second_num_a = split_rational(a)
-first_num_b, second_num_b = split_rational(b)
-multy: str = calc_multy(a, b)
-summ: str = calc_summ(a, b)
-summ_f, multy_f = check_module_fractions(a, b)
-print(f'Summa of {a} and {b} = {summ}')
-print(f' Use modul fraction. Summa of {a} and {b} = {summ_f}')
-print(f'Multy of {a} and {b} = {multy}')
-print(f' Use modul fraction. Multy of {a} and {b} = {multy_f}')
+try:
+    a, b = get_data()
+    first_num_a, second_num_a = split_rational(a)
+    first_num_b, second_num_b = split_rational(b)
+    multy: str = calc_multy(first_num_a, second_num_a, first_num_b, second_num_b)
+    summ: str = calc_summ(first_num_a, second_num_a, first_num_b, second_num_b)
+    summ_f, multy_f = check_module_fractions(first_num_a, second_num_a, first_num_b, second_num_b)
 
-# СОКРАТИТЬ ЕЩЕ
+    print(f'Summa of {a} and {b} = {summ}')
+    print(f'Using modul fraction. Summa of {a} and {b} = {summ_f}')
+    print('------------------------------------------------------')
+    print(f'Multy of {a} and {b} = {multy}')
+    print(f'Using modul fraction. Multy of {a} and {b} = {multy_f}')
+except ValueError:
+    print('Error! You have to input two rational numbers with symbol / ')
+except ZeroDivisionError:
+    print('Error! Its not possible divide by zero')

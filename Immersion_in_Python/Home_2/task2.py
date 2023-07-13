@@ -1,32 +1,35 @@
 # Напишите программу, которая получает целое число и возвращает его шестнадцатеричное строковое представление.
 # Функцию hex используйте для проверки своего результата.
 
-data = 'k: exit'
-data = data.split(':')
-print(data[1][1::])
+HEX_DIV = 16
+DICT_HEX = {'10': 'a', '11': 'b', '12': 'c', '13': 'd', '14': 'e', '15': 'f'}
 
-#
-# HEX_DIV = 16
-#
-#
-# def get_data() -> tuple[int, int]:
-#     promt: str = input('Input number and numeration: ')
-#     num, numeration = promt.split()
-#     while not num.isdigit():
-#         promt = input('Its a wrong. Try again! ')
-#         num, numeration = promt.split()
-#     return int(num), int(numeration)
-#
-#
-# def transform(num: int, numeration: int) -> str:
-#     result: str = ''
-#     while num > 0:
-#         result = str(num % numeration) + result
-#         num //= numeration
-#     return result
-#
-#
-# num, numeration = get_data()
-# print(f'result is: {transform(num, numeration)}')
-# print(oct(num)[2::])
-# print(bin(num)[2::])
+
+def get_data() -> int:
+    try:
+        number: int = int(input('Input number: '))
+    except ValueError:
+        number = int(input('Its a wrong. Try again! '))
+    return number
+
+
+def transform(num: int, numeration: int) -> str:
+    result: str = ''
+    while num > 0:
+        remains: str = str(num % numeration)
+        if remains in DICT_HEX.keys():
+            remains = DICT_HEX.get(remains)
+        result = remains + result
+        num //= numeration
+    return result
+
+
+def check_result(num: int):
+    result_without_hex: str = transform(num, HEX_DIV)
+    result_hex: str = hex(num)[2::]
+    if result_without_hex == result_hex:
+        print(f"This function is right, result is: {num} in 10 = {result_without_hex} in 16")
+
+num = get_data()
+check_result(num)
+
