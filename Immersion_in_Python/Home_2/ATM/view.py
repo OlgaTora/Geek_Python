@@ -1,5 +1,10 @@
+from __future__ import annotations
+
+from typing import Tuple
+
 import controller as c
 import constants as const
+
 
 global account
 
@@ -17,16 +22,16 @@ def exit_atm():
     c.exit_atm()
 
 
-def deposit(account: float) -> float:
+def deposit(account: float) -> tuple[float, float]:
     money: float = int(input('Input how much money you want to deposit:\n'))
     if money % const.MULTIPLE_SUM != 0:
         print(f'You have to input sum multiple {const.MULTIPLE_SUM}')
     else:
         curr_account: float = c.deposit_money_to_atm(money, account)
-        return curr_account
+        return curr_account, money
 
 
-def get_money(account: float) -> float:
+def get_money(account: float) -> tuple[float, float]:
     money: float = int(input('Input how much money you want to get:\n'))
     if money % const.MULTIPLE_SUM != 0:
         print(f'You have to get sum multiple {const.MULTIPLE_SUM}')
@@ -34,10 +39,11 @@ def get_money(account: float) -> float:
         print('You cant get more money than have')
     else:
         curr_account: float = c.get_money_from_atm(money, account)
-        return curr_account
+        return curr_account, money
 
 
-def operations(account: float, counter: int) -> float:
+def operations(account: float, counter: int) -> tuple[float, float]:
+    global money
     curr_account: float = account
     prompt: int = get_action()
     account = c.is_rich(account)
@@ -46,16 +52,17 @@ def operations(account: float, counter: int) -> float:
     if prompt == 1:
         exit_atm()
     elif prompt == 2:
-        curr_account = get_money(account)
+        curr_account, money = get_money(account)
     elif prompt == 3:
-        curr_account = deposit(account)
+        curr_account, money = deposit(account)
     if counter % 3 == 0:
         curr_account = c.count_percent(curr_account)
         print(f'You have receive percentage')
     print(f'Account:  {round(curr_account, 2)}')
-    return curr_account
+    return curr_account, money
 
 
 def prompt(data: str) -> float:
     input_data = float(input(data))
     return input_data
+

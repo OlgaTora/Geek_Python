@@ -15,7 +15,7 @@ trip_pack = {'friend 1': ('backpack', 'water', 'stew', 'boots', 'tent', 'umbrell
 all_things_all_friends = list(trip_pack.values())
 
 
-def all_friend_have_thing(all_things_all_friends: list):
+def all_friend_have_thing(all_things_all_friends: list) -> set:
     result = set(all_things_all_friends[0])  # вещи первого друга
     for one_friend_things in range(1, FRIEND):
         result &= set(all_things_all_friends[one_friend_things])
@@ -37,7 +37,7 @@ def one_friend_have(trip_pack: dict) -> list:
     return result_list
 
 
-def friend_not_have_thing(pack_dict: dict, all_have: set):
+def friend_not_have_thing(pack_dict: dict, all_have: set) -> list:
     friends = trip_pack.keys()
     result_list = []
     for friend in friends:
@@ -61,4 +61,3 @@ who_not_have = friend_not_have_thing(trip_pack, all_have)
 print(f'All friends have this things: {", ".join(all_have)}')
 print(f'One friend have this thing: {", ".join(unique)}')
 print(f'Friend who dont have thing that have other friends: {", ".join(who_not_have)}')
-

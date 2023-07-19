@@ -1,4 +1,5 @@
 import constants as const
+import logger as log
 
 
 def exit_atm():
@@ -35,3 +36,13 @@ def count_percent(account: float) -> float:
     percent: float = 1 + const.PERCENTAGE
     account *= percent
     return account
+
+
+def logger(data: float, list_for_operations: list[float]):
+    log.logger_in_file(data)
+    log.logger_in_list(data, list_for_operations)
+
+
+def create_list_for_operations() -> list[float]:
+    lst = log.create_list()
+    return lst
