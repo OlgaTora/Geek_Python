@@ -3,7 +3,6 @@ import json
 import os
 from functools import wraps
 from typing import Callable
-
 from FileName import FileName
 
 
@@ -38,7 +37,6 @@ def save_to_json(func: Callable) -> Callable:
         data = []
         data_dct = {'args': args, **kwargs}
         if os.path.exists(file_name):
-            print('path')
             with open(file_name, 'r', encoding='utf-8') as json_file:
                 data = json.load(json_file)
         result = func(*args, **kwargs)
