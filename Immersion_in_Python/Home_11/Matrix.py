@@ -51,6 +51,7 @@ class Matrix:
             raise ValueError('Matrix has different size')
 
     def __mul__(self, other):
+        """Function for multiply two matrices"""
         mul_result = [[0] * self.rows for _ in range(other.columns)]
         if self.compatibility(other):
             for i in range(self.rows):
