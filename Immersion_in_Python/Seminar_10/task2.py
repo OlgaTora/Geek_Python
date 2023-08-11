@@ -12,23 +12,23 @@
 class Rectangle(object):
 
     def __init__(self, length: float, width: float = None):
-        self.length = length
+        self.length = float(length)
         if width is not None:
-            self.width = width
+            self.width = float(width)
         else:
             self.width = length
 
     def get_square(self) ->float:
         return self.length * self.width
 
-    def get_perimetr(self) ->float:
+    def get_perimeter(self) ->float:
         return 2 * (self.length + self.width)
 
 
 if __name__ == '__main__':
     rectangle1 = Rectangle(5, 6)
     print(f'{rectangle1.get_square() = }')
-    print(f'{rectangle1.get_perimetr() = }')
+    print(f'{rectangle1.get_perimeter() = }')
     rectangle2 = Rectangle(5)
     print(f'{rectangle2.get_square() = }')
-    print(f'{rectangle2.get_perimetr() = }')
+    print(f'{rectangle2.get_perimeter() = }')
