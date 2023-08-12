@@ -12,17 +12,17 @@
 class Rectangle(object):
 
     def __init__(self, length: float, width: float = None):
-        self.length = float(length)
+        self._length = float(length)
         if width is not None:
-            self.width = float(width)
+            self._width = float(width)
         else:
-            self.width = length
+            self._width = length
 
-    def get_square(self) ->float:
-        return self.length * self.width
+    def get_square(self) -> float:
+        return self._length * self._width
 
-    def get_perimeter(self) ->float:
-        return 2 * (self.length + self.width)
+    def get_perimeter(self) -> float:
+        return 2 * (self._length + self._width)
 
 
 if __name__ == '__main__':
