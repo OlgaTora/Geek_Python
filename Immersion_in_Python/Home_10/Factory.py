@@ -20,7 +20,7 @@ class Factory:
         if class_ is not None:
             return class_
         else:
-            raise ClassNotFoundException('Class not found')
+            raise ClassNotFoundException(class_)
 
 
 if __name__ == '__main__':
