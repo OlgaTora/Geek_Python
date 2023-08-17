@@ -20,4 +20,4 @@ def save_to_csv(path_src: str, path_dst: str) -> None:
         csv_result.writerows(rows)
 
 
-save_to_csv('task_2.json', 'task_3.csv')
+save_to_csv('../Seminar_13/AccessEmployes/users.json', 'task_3.csv')
