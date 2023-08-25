@@ -17,5 +17,5 @@ if __name__ == '__main__':
     for subject in list_of_subjects:
         rows_to_write.append({'Subject': subject})
 
-    file = 'list_of_subjects.csv'
+    file = 'Immersion_in_Python/Home_12/List_of_subjects.py'
     create_csv(file, rows_to_write)

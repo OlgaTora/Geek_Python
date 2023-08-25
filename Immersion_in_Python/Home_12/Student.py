@@ -12,11 +12,11 @@
 import csv
 import json
 
-from Descriptor import DescriptorName
+from Immersion_in_Python.Home_12.Descriptor import DescriptorName
 
 
 class Student:
-    file_name = 'list_of_subjects.csv'
+    file_name = '/home/olgatorres/PycharmProjects/Geek_Python/Immersion_in_Python/Home_12/list_of_subjects.csv'
     name = DescriptorName()
     patronymic = DescriptorName()
     surname = DescriptorName()
@@ -65,7 +65,7 @@ class Student:
         else:
             self.list_of_progress[subject]['test_results'].append(test_result)
 
-    def append_grade(self, grade: int, subject: str):
+    def append_grade(self, grade: int, subject: str) -> None:
         """Function for append grades and check value """
         self.check_subject(subject)
         if grade > self.max_grade or grade < self.min_grade:

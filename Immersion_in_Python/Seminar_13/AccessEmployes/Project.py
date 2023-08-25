@@ -1,7 +1,7 @@
 import json
 from typing import Set
-from User import User
-from ExceptionBD import AccessException, LevelException
+from Immersion_in_Python.Seminar_13.AccessEmployes.User import User
+from Immersion_in_Python.Seminar_13.AccessEmployes.ExceptionBD import AccessException, LevelException
 
 
 class Project:
@@ -11,7 +11,7 @@ class Project:
         self.admin = None
         self.users_set = self.create_users()
 
-    def create_users(self) -> Set[User]:
+    def create_users(self, file_name=None) -> Set[User]:
         """Function for load list of user into the set"""
         with open(self.FILE_NAME, 'r', encoding='utf-8') as file:
             users_dict = json.load(file)
@@ -41,7 +41,7 @@ class Project:
 
     def save_users(self):
         """Function for save users to json file"""
-        data = {str(access_level): {} for access_level in range(User.MIN_LEVEL, User.MAX_LEVEL+ 1)}
+        data = {str(access_level): {} for access_level in range(User.MIN_LEVEL, User.MAX_LEVEL + 1)}
         for user in self.users_set:
             for key in data.keys():
                 if user.access_level == key:

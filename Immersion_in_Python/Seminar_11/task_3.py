@@ -54,6 +54,7 @@ if __name__ == '__main__':
     print(rect1)
     rect2 = RectanglePro(4, 6)
     result1 = rect1 + rect2
+    print(result1)
     print(result1.get_perimeter())
     result2 = rect1 - rect2
     print(result2.get_perimeter())
