@@ -3,7 +3,7 @@
         const path = window.location.pathname.split("/");
         const page = path[path.length - 1] || "main";
         try {
-            const response = await fetch(`/get_page_html/${page}`);
+            const response = await fetch(`/get-page-html/${page}`);
             if (response.ok) {
                 document.getElementById("main-page").innerHTML = await response.text();
             } else {
