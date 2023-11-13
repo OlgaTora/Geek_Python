@@ -14,10 +14,10 @@ class Archive:
     """Singleton. Хранит число и строку в списках."""
     _instance = None
 
-    def __init__(self, text: str, number: float):
+    def __init__(cls, text: str, number: float):
         print("INIT")
-        self.number = number
-        self.text = text
+        cls.number = number
+        cls.text = text
 
     def __new__(cls, *args, **kwargs):
         print('NEW')
@@ -31,16 +31,16 @@ class Archive:
 
         return cls._instance
 
-    def __repr__(self):
+    def __repr__(cls):
         '''Функция вывода информации для разработчика'''
-        return f'number: {self.number}, text: {self.text}'
+        return f'number: {cls.number}, text: {cls.text}'
 
-    def __str__(self):
+    def __str__(cls):
         '''Функция вывода информации для пользователя'''
-        return (f'Number: {self.archive_nums}\n'
-                f'String archive: {self.archive_str}'
-                f'Current number: {self.number}\n'
-                f'Current text: {self.text}')
+        return (f'Number: {cls.archive_nums}\n'
+                f'String archive: {cls.archive_str}'
+                f'Current number: {cls.number}\n'
+                f'Current text: {cls.text}')
 
 
 example1 = Archive('text1', 1)
