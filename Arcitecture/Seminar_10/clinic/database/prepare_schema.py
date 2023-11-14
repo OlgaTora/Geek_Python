@@ -13,7 +13,7 @@ class PrepareDatabase:
         connect = Connection(DATABASE_URL)
         reader = SQLReader(connect)
         clients_script = "CREATE TABLE if not EXISTS Clients(" \
-                         "ClientId INTEGER PRIMARY KEY," \
+                         "ClientId INTEGER AUTOINCREMENT PRIMARY KEY," \
                          " Document TEXT, SurName TEXT," \
                          " FirstName TEXT," \
                          " Patronymic TEXT," \

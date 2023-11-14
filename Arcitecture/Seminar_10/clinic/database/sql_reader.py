@@ -12,7 +12,7 @@ class SQLReader:
         conn = self.connection.create_connection()
         try:
             cur = conn.cursor()
-            cur.executescript(sql_script)
+            cur.execute(sql_script)
             conn.commit()
         except ConnectionError as conn_error:
             logger.info(conn_error)

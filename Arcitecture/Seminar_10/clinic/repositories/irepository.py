@@ -12,7 +12,7 @@ class IRepository(ABC):
         pass
 
     @abstractmethod
-    def create(self):
+    def create(self, item: Any):
         pass
 
     @abstractmethod
