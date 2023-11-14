@@ -1,13 +1,6 @@
-from datetime import date
 from starlette.responses import RedirectResponse
-from fastapi import FastAPI
 
-from weather.models.weather_forecast_holder import WeatherForecastHolder
-
-from weather.models.weather_forecast import WeatherForecast
-
-app = FastAPI()
-_weather_forecast_holder = WeatherForecastHolder()
+from clinic.main import app
 
 
 @app.get('/')
