@@ -2,8 +2,8 @@ from datetime import date
 from starlette.responses import RedirectResponse
 from fastapi import FastAPI
 
-from Arcitecture.Seminar_9.weather.models.weather_forecast import WeatherForecast
-from Arcitecture.Seminar_9.weather.models.weather_forecast_holder import WeatherForecastHolder
+from models.weather_forecast import WeatherForecast
+from models.weather_forecast_holder import WeatherForecastHolder
 
 app = FastAPI()
 _weather_forecast_holder = WeatherForecastHolder()

@@ -1,6 +1,6 @@
 from datetime import date
 
-from Arcitecture.Seminar_9.weather.models.weather_forecast import WeatherForecast
+from weather.models.weather_forecast import WeatherForecast
 
 
 class WeatherForecastHolder:
