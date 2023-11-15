@@ -4,21 +4,21 @@ from abc import ABC, abstractmethod
 
 class IRepository(ABC):
     @abstractmethod
-    def get_all(self) -> list[Any]:
+    async def get_all(self) -> list[Any]:
         pass
 
     @abstractmethod
-    def get_by_id(self, id: Any) -> Any:
+    async def get_by_id(self, id: Any) -> Any:
         pass
 
     @abstractmethod
-    def create(self, item: Any):
+    async def create(self, item: Any):
         pass
 
     @abstractmethod
-    def update(self, item: Any):
+    async def update(self, id: Any, item: Any):
         pass
 
     @abstractmethod
-    def delete(self, item: Any):
+    async def delete(self, id: Any):
         pass

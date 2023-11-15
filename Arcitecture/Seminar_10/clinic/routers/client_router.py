@@ -1,55 +1,50 @@
-from typing import List
-from fastapi import APIRouter  # , Depends
-# from Arcitecture.Seminar_10.clinic.services.depends import get_client_service
+from typing import List, Any
+from fastapi import APIRouter
 from Arcitecture.Seminar_10.clinic.repositories.clients_repository import ClientRepository
 from Arcitecture.Seminar_10.clinic.schemas.client import Client
-# from Arcitecture.Seminar_10.clinic.services.clients import ClientService
-from Arcitecture.Seminar_10.clinic.schemas.requests.create_client_request import CreateClientRequest
+from Arcitecture.Seminar_10.clinic.schemas.client import CreateClientRequest
 
 router = APIRouter()
 _client_repo = ClientRepository()
 
-@router.get('/get-all/',
+
+@router.get('/get-all-clients/',
             responses={400: {'description': 'Bad request'}},
             response_model=List[Client],
             description='Get all clients', )
 async def get_all_clients() -> List[Client]:
-    clients = _client_repo.get_all()
+    clients = await _client_repo.get_all()
     return clients
 
 
-@router.post('/create/',
+@router.post('/create-new-client/',
              responses={400: {'description': 'Bad request'}},
-             response_model=List[Client],
+             response_model=Client,
              description='Create client', )
-async def create_client(new_client: CreateClientRequest) -> Client:
-    client = Client(
-        client_id=1,
-        document=new_client.document,
-        surname=new_client.surname,
-        firstname=new_client.firstname,
-        patronymic=new_client.patronymic,
-        birthday=new_client.birthday,
-    )
-    return _client_repo.create(client)
-
-#
-# @router.get('/get-by-id/')  # , response_model=list[])
-# async
+async def create_client(new_client: CreateClientRequest) -> dict[str, Any]:
+    result = await _client_repo.create(new_client)
+    return result
 
 
-# def get_by_id():
-#     # list_measures: list = _weather_forecast_holder.get(date_from, date_to)
-#     return 'ok'  # list_measures
-#
-#
-# @router.put('/update/')  # , response_model=bool)
-# async def update(id: int):
-#     # result: bool = _weather_forecast_holder.update(measure_date, temperature_c)
-#     return 'ok'
-#
-#
-# @router.delete('/delete/')  # , response_model=bool)
-# async def delete(id: int):
-#     # result: bool = _weather_forecast_holder.delete(measure_date)
-#     return 'ok'  # result
+@router.get('/get-client-by-id/{client_id}', responses={400: {'description': 'Bad request'}},
+            response_model=Client,
+            description='Search client by id')
+async def get_client_by_id(client_id: int) -> Client:
+    result = await _client_repo.get_by_id(client_id)
+    return result
+
+
+@router.delete('/delete-client/{client_id}', responses={400: {'description': 'Bad request'}},
+               response_model=int,
+               description='Delete client by id')
+async def delete_client(client_id: int) -> int:
+    result = await _client_repo.delete(client_id)
+    return result
+
+
+@router.put('/update-client/{client_id}', responses={400: {'description': 'Bad request'}},
+            response_model=int,
+            description='Update client by id')
+async def update_client(client_id: int, item: Client) -> int:
+    result = await _client_repo.update(client_id, item)
+    return result

@@ -1,6 +1,6 @@
 import logging
 
-logging.basicConfig(filename='clinic.log', level=logging.INFO, filemode="w",
+logging.basicConfig(level=logging.INFO, filename='clinica.log',
                     format="%(asctime)s - [%(levelname)s]"
                            " -  %(name)s - (%(filename)s).%(funcName)s(%(lineno)d) - %(message)s",
                     datefmt='%H:%M:%S')

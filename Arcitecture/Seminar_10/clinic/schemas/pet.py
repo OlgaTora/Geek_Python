@@ -2,8 +2,11 @@ from datetime import date
 from pydantic import BaseModel
 
 
-class Pet(BaseModel):
-    pet_id: int
+class CreatePetRequest(BaseModel):
     client_id: int
     name: str
     birthday: date
+
+
+class Pet(CreatePetRequest):
+    pet_id: int

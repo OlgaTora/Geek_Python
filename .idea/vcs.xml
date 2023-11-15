@@ -2,7 +2,5 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Arcitecture/Seminar_7/gbSem07SPA" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Flask-GB" vcs="Git" />
   </component>
 </project>
