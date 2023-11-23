@@ -1,19 +1,19 @@
 from typing import List, Any
-from fastapi import APIRouter
-from Arcitecture.Seminar_10.clinic.repositories.clients_repository import ClientRepository
+from fastapi import APIRouter, Depends
 from Arcitecture.Seminar_10.clinic.schemas.client import Client
 from Arcitecture.Seminar_10.clinic.schemas.client import CreateClientRequest
+from Arcitecture.Seminar_10.clinic.services.clients import ClientService
+from Arcitecture.Seminar_10.clinic.services.depends import get_client_service
 
 router = APIRouter()
-_client_repo = ClientRepository()
 
 
 @router.get('/get-all-clients/',
             responses={400: {'description': 'Bad request'}},
             response_model=List[Client],
             description='Get all clients', )
-async def get_all_clients() -> List[Client]:
-    clients = await _client_repo.get_all()
+async def get_all_clients(client_service: ClientService = Depends(get_client_service)) -> List[Client]:
+    clients = await client_service.get_all()
     return clients
 
 
@@ -21,30 +21,32 @@ async def get_all_clients() -> List[Client]:
              responses={400: {'description': 'Bad request'}},
              response_model=Client,
              description='Create client', )
-async def create_client(new_client: CreateClientRequest) -> dict[str, Any]:
-    result = await _client_repo.create(new_client)
+async def create_client(new_client: CreateClientRequest, client_service: ClientService = Depends(get_client_service)) -> \
+        dict[str, Any]:
+    result = await client_service.create(new_client)
     return result
 
 
 @router.get('/get-client-by-id/{client_id}', responses={400: {'description': 'Bad request'}},
             response_model=Client,
             description='Search client by id')
-async def get_client_by_id(client_id: int) -> Client:
-    result = await _client_repo.get_by_id(client_id)
+async def get_client_by_id(client_id: int, client_service: ClientService = Depends(get_client_service)) -> Client:
+    result = await client_service.get_by_id(client_id)
     return result
 
 
 @router.delete('/delete-client/{client_id}', responses={400: {'description': 'Bad request'}},
                response_model=int,
                description='Delete client by id')
-async def delete_client(client_id: int) -> int:
-    result = await _client_repo.delete(client_id)
+async def delete_client(client_id: int, client_service: ClientService = Depends(get_client_service)) -> int:
+    result = await client_service.delete(client_id)
     return result
 
 
 @router.put('/update-client/{client_id}', responses={400: {'description': 'Bad request'}},
             response_model=int,
             description='Update client by id')
-async def update_client(client_id: int, item: Client) -> int:
-    result = await _client_repo.update(client_id, item)
+async def update_client(client_id: int, item: Client,
+                        client_service: ClientService = Depends(get_client_service)) -> int:
+    result = await client_service.update(client_id, item)
     return result
