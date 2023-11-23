@@ -35,18 +35,27 @@ class TestCalculator(unittest.TestCase):
             self.calculator.calculation(100, 0, ';')
             self.assertEqual(str(e.exception), 'Unexpected value operator')
 
+    #   проверка функции подсчета скидки с вводом целых чисел
     def test_calculate_discount(self):
         self.assertEqual(self.calculator.calculate_discount(100, 10), 90.0)
 
+    # проверка ожидаемого исключения при вводе скидки более 100%
     def test_calculate_bad_discount(self):
-        with self.assertRaises(ValueError) as e:
+        with self.assertRaises(ArithmeticError) as e:
             self.assertEqual(self.calculator.calculate_discount(100, 101), 90.0)
             self.assertEqual(str(e.exception), 'Discount should be from 0 to 100 percents')
 
+    # проверка ожидаемого исключения при вводе суммы меньше 0
     def test_calculate_discount_bad_amount(self):
-        with self.assertRaises(ValueError) as e:
+        with self.assertRaises(ArithmeticError) as e:
             self.assertEqual(self.calculator.calculate_discount(-100, 10), 90.0)
             self.assertEqual(str(e.exception), 'Amount should be more than zero')
+
+    # проверка ожидаемого исключения при вводе не целых чисел
+    def test_calculate_discount_bad_inputs(self):
+        with self.assertRaises(TypeError) as e:
+            self.assertEqual(self.calculator.calculate_discount(-100, '1'), 90.0)
+            self.assertEqual(str(e.exception), 'You should input only integers')
 
 
 if __name__ == '__main__':

@@ -1,19 +1,10 @@
-"""Задание 1. ** В классе Calculator создайте метод calculateDiscount,
- который принимает сумму покупки и процент скидки и возвращает сумму с учетом скидки.
- Ваша задача - проверить этот метод с использованием библиотеки AssertJ.
- Если метод calculateDiscount получает недопустимые аргументы, он должен выбрасывать исключение ArithmeticException.
-  Не забудьте написать тесты для проверки этого поведения.
-
-*Задание 2. (необязательное) *
-Мы хотим улучшить функциональность нашего интернет-магазина. Ваша задача - добавить два новых метода в класс Shop:
-Метод sortProductsByPrice(), который сортирует список продуктов по стоимости. Метод getMostExpensiveProduct(),
- который возвращает самый дорогой продукт. Напишите тесты, чтобы проверить, что магазин хранит верный список
-  продуктов (правильное количество продуктов, верное содержимое корзины).
-Напишите тесты для проверки корректности работы метода getMostExpensiveProduct.
-Напишите тесты для проверки корректности работы метода sortProductsByPrice (проверьте правильность сортировки).
-Используйте класс Product для создания экземпляров продуктов и класс Shop для написания методов сортировки и тестов.
 """
-
+В классе Calculator создайте метод calculateDiscount,
+который принимает сумму покупки и процент скидки и возвращает сумму с учетом скидки.
+Ваша задача - проверить этот метод с использованием библиотеки AssertJ.
+Если метод calculateDiscount получает недопустимые аргументы, он должен выбрасывать исключение ArithmeticException.
+Не забудьте написать тесты для проверки этого поведения.
+"""
 
 class Calculator:
     @staticmethod
@@ -39,12 +30,11 @@ class Calculator:
 
     @staticmethod
     def calculate_discount(amount: int, discount: int) -> float:
-        if amount < 0:
-            raise ValueError('Amount should be more than zero')
-        if not 0 <= discount <= 100:
-            raise ValueError('Discount should be from 0 to 100 percents')
-        return amount * (1 - discount / 100)
-
-c = Calculator()
-res = c.calculate_discount(100, 10)
-print(res)
+        if isinstance(amount, int) and isinstance(discount, int):
+            if amount < 0:
+                raise ArithmeticError('Amount should be more than zero')
+            if not 0 <= discount <= 100:
+                raise ArithmeticError('Discount should be from 0 to 100 percents')
+            return amount * (1 - discount / 100)
+        else:
+            raise TypeError('You should input only integers')
