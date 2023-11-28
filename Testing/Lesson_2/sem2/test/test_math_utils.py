@@ -4,7 +4,7 @@
 """
 import unittest
 
-from Testing.Seminar_2.task1.math_utils import MathUtils
+from Testing.Lesson_2.sem2.math_utils import MathUtils
 
 
 class TestMathUtils(unittest.TestCase):

@@ -1,7 +1,7 @@
 import unittest
 from parameterized import parameterized
 
-from Testing.Seminar_2.task3.calc import Calc
+from Testing.Lesson_2.sem2.calc import Calc
 
 """
 Используйте параметризованные тесты для проверки работы этих операций на 
@@ -9,7 +9,7 @@ from Testing.Seminar_2.task3.calc import Calc
 """
 
 
-class TestSuite(unittest.TestCase):
+class TestCalc(unittest.TestCase):
     def setUp(self):
         self.calc = Calc()
 
@@ -32,10 +32,16 @@ class TestSuite(unittest.TestCase):
     def test_divide(self, test_name, in_1, in_2, expected):
         assert self.calc.divide(in_1, in_2) == expected
 
-    def what_exception_will_be_thrown(self):
-        self.assertRaises(ValueError, self.calc.divide(1, 0))
+    def test_what_exception_will_be_thrown(self):
+        self.assertRaises(ValueError, lambda: self.calc.divide(1, 0))
 
-    # @parameterized.expand([('test_1', 1, 0), ('test_2', -1, 0), ('test_3', 10, 0)])
-    # def test_divide_many_exceptions(self, test_name, in_1, in_2):
-    #     assert ValueError == self.calc.divide(in_1, in_2)
+    @parameterized.expand([('test_1', 1, 0), ('test_2', -1, 0), ('test_3', 10, 0)])
+    def test_divide_many_exceptions(self, test_name, in_1, in_2):
+        with self.subTest(test_name=test_name):
+            with self.assertRaises(ValueError):
+            #Здесь вызывается код, который должен вызвать исключение
+                result = self.calc.divide(in_1, in_2)
 
+
+if __name__ == '__main__':
+    unittest.main()

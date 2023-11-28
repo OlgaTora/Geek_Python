@@ -1,6 +1,6 @@
 import unittest
 
-from Testing.Seminar_1.Calculator import Calculator
+from Testing.Lesson_1.Calculator import Calculator
 
 
 class TestCalculator(unittest.TestCase):

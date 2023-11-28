@@ -1,18 +1,18 @@
-from Testing.Seminar_2.hw2.Vehicle import Vehicle
+from Testing.Lesson_2.hw2.Vehicle import Vehicle
 
 
-class Car(Vehicle):
+class Motorcycle(Vehicle):
 
     def __init__(self, company: str, model: str, year: int):
         super().__init__()
         self.company = company
         self.model = model
         self.year_release = year
-        self.num_wheels = 4
+        self.num_wheels = 2
         self.speed = 0
 
     def test_drive(self):
-        self.speed = 60
+        self.speed = 75
 
     def park(self):
         self.speed = 0
@@ -33,4 +33,4 @@ class Car(Vehicle):
         return self.speed
 
     def __str__(self) -> str:
-        return f'This car is a {self.year_release} year, model {self.model}'
+        return f'This motorcycle is a {self.year_release} year, model {self.model}'

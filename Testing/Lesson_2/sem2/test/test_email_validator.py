@@ -7,7 +7,7 @@
  для проверки различных сценариев, включая правильные и неправильные адреса"""
 import unittest
 
-from Testing.Seminar_2.task2.email_validator import EmailValidator
+from Testing.Lesson_2.sem2.email_validator import EmailValidator
 
 
 class TestEmailValidator(unittest.TestCase):
