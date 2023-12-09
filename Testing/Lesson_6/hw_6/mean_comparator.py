@@ -19,6 +19,8 @@ class MeanComparator:
             raise ValueError('Список не должен быть пустым')
         summ: float = 0.0
         for i in any_list:
+            if type(i) != int and type(i) != float:
+                raise TypeError('Список должен состоять из цифр')
             summ += i
         mean = summ / len(any_list)
         return mean
