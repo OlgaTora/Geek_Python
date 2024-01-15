@@ -37,7 +37,7 @@ class ClientRepository(IRepository):
         last_id = await database.execute(query)
         return {**client.model_dump(), "client_id": last_id}
 
-    async def update(self, client_id: int, item: Client):
+    async def update(self, client_id: int, item: Client) -> int:
         query = clients.update().where(clients.c.client_id == client_id).values(**item.model_dump())
         result = await database.execute(query)
         if not result:
@@ -46,7 +46,7 @@ class ClientRepository(IRepository):
             raise HTTPException(status_code=404, detail=msg)
         return client_id
 
-    async def delete(self, client_id: int):
+    async def delete(self, client_id: int) -> int:
         query = clients.delete().where(clients.c.client_id == client_id)
         result = await database.execute(query)
         if not result:
