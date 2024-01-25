@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 from engine import create_field, draw_field, game_over, dictionary
+from constants import SIZE
 
 symb = 'X'
 count = 0
@@ -55,10 +56,10 @@ def clicked(row, col):
 
 def play():
     field = draw_field('800x800', 'gray')
-    for i in range(3):
+    for i in range(SIZE):
         field.columnconfigure(i, weight=1, minsize=75)
         field.rowconfigure(i, weight=1, minsize=50)
-        for j in range(3):
+        for j in range(SIZE):
             frame = tk.Frame(
                 master=field,
                 relief=tk.RAISED,

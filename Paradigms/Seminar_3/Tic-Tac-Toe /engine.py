@@ -1,9 +1,8 @@
 import tkinter as tk
 from random import randint
-
+from constants import SIZE
 
 list_field = []
-SIZE = 3
 
 
 def dictionary():
