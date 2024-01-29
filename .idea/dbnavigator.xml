@@ -13,13 +13,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="37eced08-2731-467c-9589-014d36fe8cfa">
-      <console name="Connection" type="STANDARD" schema="main" session="Main"><![CDATA[CREATE TABLE if not EXISTS Clients(
-                         client_id INTEGER PRIMARY KEY,
-                         document varchar(128),
-                         surname varchar(128),
-                         firstName varchar(128),
-                         patronymic varchar(128),
-                          birthday varchar(128));]]></console>
+      <console name="Connection" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -101,7 +95,14 @@
           <max-connection-pool-size value="7" />
           <alternative-statement-delimiter value="" />
         </details>
-        <object-filters hide-empty-schemas="false" hide-pseudo-columns="false">
+        <debugger>
+          <compile-dependencies value="true" />
+          <tcp-driver-tunneling value="false" />
+          <tcp-host-address value="" />
+          <tcp-port-from value="4000" />
+          <tcp-port-to value="4999" />
+        </debugger>
+        <object-filters hide-empty-schemas="false" hide-pseudo-columns="false" hide-audit-columns="false">
           <object-type-filter>
             <object-type name="SCHEMA" enabled="true" />
             <object-type name="USER" enabled="true" />
@@ -279,6 +280,7 @@
       <confirmations>
         <save-changes value="false" />
         <revert-changes value="true" />
+        <exit-on-changes value="ASK" />
       </confirmations>
     </code-editor-settings>
     <code-completion-settings>
@@ -479,7 +481,6 @@
       </compiler>
       <debugger>
         <debugger-type value="JDBC" />
-        <use-generic-runners value="true" />
       </debugger>
     </operation-settings>
     <ddl-file-settings>
